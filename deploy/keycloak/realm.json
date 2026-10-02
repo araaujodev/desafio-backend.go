@@ -1,0 +1,57 @@
+{
+  "realm": "wager",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "provider-a",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "provider-a-local-secret",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "providerId",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-hardcoded-claim-mapper",
+          "config": {"claim.name": "providerId", "claim.value": "provider-a",
+                     "jsonType.label": "String", "access.token.claim": "true"}
+        }
+      ]
+    },
+    {
+      "clientId": "provider-b",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "provider-b-local-secret",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "providerId",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-hardcoded-claim-mapper",
+          "config": {"claim.name": "providerId", "claim.value": "provider-b",
+                     "jsonType.label": "String", "access.token.claim": "true"}
+        }
+      ]
+    },
+    {
+      "clientId": "internal-service",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "internal-local-secret",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "role",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-hardcoded-claim-mapper",
+          "config": {"claim.name": "role", "claim.value": "internal",
+                     "jsonType.label": "String", "access.token.claim": "true"}
+        }
+      ]
+    }
+  ]
+}
