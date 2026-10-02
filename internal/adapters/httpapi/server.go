@@ -22,6 +22,7 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("GET /health/live", func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(200) })
 	mux.Handle("POST /wallets", s.verifier.Middleware(http.HandlerFunc(s.createWallet)))
 	mux.Handle("POST /wagering/transactions", s.verifier.Middleware(http.HandlerFunc(s.submit)))
+	s.registerReads(mux)
 	return mux
 }
 
