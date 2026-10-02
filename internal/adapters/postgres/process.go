@@ -19,7 +19,7 @@ func (s *Store) Process(ctx context.Context, req domain.ExternalRequest) (Result
 		return Result{}, err
 	}
 	if req.Kind == domain.KindRefund || req.Kind == domain.KindRollback {
-		return Result{}, ErrNotImplemented
+		return s.processReversal(ctx, req)
 	}
 	hash, err := req.RequestHash()
 	if err != nil {

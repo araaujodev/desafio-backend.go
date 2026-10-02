@@ -115,6 +115,8 @@ func (s *Server) submit(w http.ResponseWriter, r *http.Request) {
 	switch {
 	case err == nil && res.Status == "REJECTED":
 		writeJSON(w, http.StatusUnprocessableEntity, res)
+	case err == nil && res.Status == "PENDING_REFERENCE":
+		writeJSON(w, http.StatusAccepted, res)
 	case err == nil:
 		writeJSON(w, http.StatusOK, res)
 	case errors.Is(err, postgres.ErrIdempotencyConflict):
