@@ -65,6 +65,6 @@ func runHTTP(lc fx.Lifecycle, srv *httpapi.Server) {
 func main() {
 	fx.New(
 		fx.Provide(newPool, postgres.NewStore, newVerifier, httpapi.NewServer),
-		fx.Invoke(runHTTP),
+		fx.Invoke(runHTTP, runPublisher),
 	).Run()
 }
